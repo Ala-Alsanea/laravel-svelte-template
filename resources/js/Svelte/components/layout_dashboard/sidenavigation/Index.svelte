@@ -7,8 +7,6 @@
     export let DataItem;
     export let mobilePosition = "right";
 
-    $: console.log("sidenav", DataItem);
-
     const style = {
         mobilePosition: {
             left: "left-0",

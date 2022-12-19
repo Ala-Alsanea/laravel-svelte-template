@@ -4,14 +4,15 @@
 </script>
 
 <script>
-    import { page } from "@inertiajs/inertia-svelte";
+    import { inertia } from "@inertiajs/inertia-svelte";
+    let a = "sieee";
 </script>
 
-<main>
-    <!--  -->
-</main>
+<main>view</main>
 
-<!-- config -->
 <svelte:head>
-    <title>index</title>
+    <title>view</title>
 </svelte:head>
+
+<style>
+</style>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
@@ -15,14 +16,10 @@ use Inertia\Inertia;
 |
 */
 
-
-
-
 Route::get('/', function () {
-    // sleep(3);
+    return redirect('/view');
+});
+Route::get('/view', [CarController::class, 'view']);
 
-    return Inertia::render('pages/admin/index', []);
-});
-Route::get('/home', function () {
-    return Inertia::render('pages/admin/Home', []);
-});
+Route::get('/create', [CarController::class, 'create']);
+Route::get('/test', [CarController::class, 'test']);

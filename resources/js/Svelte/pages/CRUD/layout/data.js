@@ -9,19 +9,22 @@ import DocumentationIcon from "./icons/DocumentationIcon.svelte";
 const data = [{
     section: "test",
     content: [{
-            title: "index",
-            icon: ContactIcon,
-            link: "/",
-        },
-        {
-            title: "home",
-            icon: HomeIcon,
-            link: "/home",
-        },
-        {
             title: "view",
-            icon: HomeIcon,
+            icon: MediasIcon,
             link: "/view",
+            component: "pages/CRUD/View",
+        },
+        {
+            title: "create",
+            icon: MediasIcon,
+            link: "/create",
+            component: "pages/CRUD/Create",
+        },
+        {
+            title: "test",
+            icon: MediasIcon,
+            link: "/test",
+            component: "",
         },
     ],
 }, ];

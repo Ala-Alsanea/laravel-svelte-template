@@ -14,8 +14,6 @@
 
     export let DataItem;
 
-    $: console.log("layout", DataItem);
-
     const style = {
         container: `  h-screen overflow-hidden relative`,
         mainContainer: `lg:w-[calc(100%-16rem)] `,

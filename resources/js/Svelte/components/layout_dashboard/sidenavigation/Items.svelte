@@ -4,8 +4,6 @@
 
     export let DataItem = data;
 
-    // $: console.log("sideitem", DataItem);
-
     const style = {
         title: `mx-4 text-sm`,
         section: ` pl-5 text-white text-center mb-6 uppercase lg:pl-1`,
@@ -24,7 +22,10 @@
                     <button
                         use:inertia={{ href: item.link }}
                         class={`${style.link} ${
-                            item.link === $page.url ? style.active : ""
+                            item.link === $page.url ||
+                            item.component === $page.component
+                                ? style.active
+                                : ""
                         }`}
                     >
                         <span><svelte:component this={item.icon} /></span>
