@@ -1,4 +1,12 @@
-# Laravel-Svelte-Tailwindcss-Inertia-Vite-[template]
+# Laravel-Svelte-Inertia [template]
+
+## dependencies 
+  - vite
+  - inertia    
+  - Tailwindcss
+  - daisy UI
+  - svelte
+  - laravel
 
 
 
@@ -8,6 +16,7 @@
     - [ ] paginate
     - [ ] file upload 
   - [ ] user rules
+  - [ ] user profile
   - [ ] user auth (login and register [ for admin only ] )
   - [ ] admin panel
 
