@@ -8,6 +8,7 @@ use App\Models\Color;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CarController extends Controller
 {
@@ -16,7 +17,7 @@ class CarController extends Controller
     protected  function view()
     {
 
-        $cars = Car::with('color:id,data', 'brand:id,data')->select('model', 'color_id', 'brand_id')->paginate(5);
+        $cars = Car::with('color:id,data', 'brand:id,data')->select('id', 'model', 'color_id', 'brand_id')->orderby('id', 'desc')->paginate(5);
         // dd($cars);
 
 
@@ -43,6 +44,44 @@ class CarController extends Controller
             ]
         );
     }
+
+    protected function store(Request $request)
+    {
+        $field = $request->validate(
+            [
+                'model' => ['required', 'min:3'],
+                'price' => ['required', 'numeric'],
+                'year' => ['required', 'date'],
+                'description' => 'required',
+                'color' => ['required', Rule::exists('colors', 'data')],
+                'brand' => ['required', Rule::exists('brands', 'data')],
+            ]
+        );
+
+
+        $color = Color::where('data', '=', $field['color'])->first();
+        $brand = Brand::where('data', '=', $field['brand'])->first();
+
+
+
+        // dd($brand->id);
+
+        $field['color_id'] = $color->id;
+        unset($field['color']);
+
+        $field['brand_id'] = $brand->id;
+        unset($field['brand']);
+
+
+        // dd($field);
+
+        $car = Car::create($field);
+        // dd($car);
+
+
+        return redirect('/');
+    }
+
 
     protected function test()
     {

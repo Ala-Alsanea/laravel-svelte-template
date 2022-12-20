@@ -18,7 +18,7 @@ class ColorFactory extends Factory
     {
         return [
             //
-            'data' => fake()->colorName()
+            'data' => fake()->unique()->colorName()
         ];
     }
 }

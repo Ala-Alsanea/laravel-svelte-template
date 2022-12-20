@@ -5,44 +5,54 @@
 </script>
 
 <script>
-    //
+    import { Inertia } from "@inertiajs/inertia";
+
     let data = {
         model: null,
-        brand: null,
-        color: null,
+        brand: "",
+        color: "",
         price: null,
         year: null,
         description: null,
     };
 
-    let brandList = [
-        { data: "ssss" },
-        { data: "ssss" },
-        { data: "ssss" },
-        { data: "ssss" },
-        { data: "ssss" },
-    ];
     export let brands;
     let brandSelected;
     let brandDefault = "Pick one";
 
-    let colorList = [
-        { data: "coco" },
-        { data: "coco" },
-        { data: "coco" },
-        { data: "coco" },
-        { data: "coco" },
-    ];
     export let colors;
     let colorSelected;
     let colorDefault = "Pick one";
 
-    $: console.log("brand", brands);
+    export let errors;
+    let errorList = [];
+
+    // fun
+
+    function handelSubmit() {
+        console.log("post", data);
+        Inertia.post("/create/store", data);
+    }
+
+    $: {
+        data.brand = brandSelected;
+        data.color = colorSelected;
+    }
+    $: {
+        errorList = Object.values(errors);
+        console.log("errorList", errorList);
+    }
+    $: console.log("errors", errors);
+    $: console.log("data", data);
 </script>
 
 <main>
     <div class="border border-primary rounded-md p-5 mx-10 ">
-        <form action="" on:submit|preventDefault class="flex flex-col gap-3 ">
+        <form
+            action=""
+            on:submit|preventDefault={handelSubmit}
+            class="flex flex-col gap-3 "
+        >
             <!-- model -->
             <div class=" w-full max-w-xs">
                 <label class="label">
@@ -58,7 +68,7 @@
                 />
             </div>
 
-            <!-- brand & color -->
+            <!-- color & color -->
             <div class=" flex gap-2 flex-wrap">
                 <!-- brand -->
                 <div class="form-control w-full max-w-xs">
@@ -69,7 +79,7 @@
                         name="brand"
                         class="select  select-primary"
                         required
-                        bind:value={brandSelected}
+                        bind:value={data.brand}
                     >
                         <option disabled selected>{brandDefault}</option>
                         {#each brands as brand}
@@ -87,7 +97,7 @@
                         name="color"
                         class="select select-primary"
                         required
-                        bind:value={colorSelected}
+                        bind:value={data.color}
                     >
                         <option disabled selected>{colorDefault}</option>
                         {#each colors as color}
@@ -143,6 +153,15 @@
                     bind:value={data.description}
                 />
             </div>
+
+            <!-- errors -->
+            {#if errorList.length != 0}
+                <div class="alert-error p-3">
+                    {#each errorList as error}
+                        <p>{error}</p>
+                    {/each}
+                </div>
+            {/if}
 
             <button class=" btn btn-success md:w-20"> submit</button>
         </form>

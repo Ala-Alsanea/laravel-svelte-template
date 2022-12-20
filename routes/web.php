@@ -22,4 +22,7 @@ Route::get('/', function () {
 Route::get('/view', [CarController::class, 'view']);
 
 Route::get('/create', [CarController::class, 'create']);
+Route::post('/create/store', [CarController::class, 'store']);
+
+// test
 Route::get('/test', [CarController::class, 'test']);

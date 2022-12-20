@@ -8,7 +8,7 @@
     export let cars;
     let counter = 0;
 
-    $: console.log("cars", cars.data[0]);
+    $: console.log("cars", cars);
 </script>
 
 <main>
@@ -29,7 +29,7 @@
                 {#each cars.data as car}
                     <!-- row 1 -->
                     <tr>
-                        <th>{(counter = counter + 1)}</th>
+                        <th>{car.id}</th>
                         <td>{car.brand.data}</td>
                         <td>{car.model}</td>
                         <td>{car.color.data}</td>
