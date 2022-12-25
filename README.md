@@ -10,15 +10,22 @@
 
 
 
-## Feature
+## Feature [ ToDo ]
   - [ ] CRUD
+    - [ ] select click box in view
+    - [ ] sort in view
+    - [ ] delete modal
+    - [ ] update form
     - [x] form server side validation
     - [ ] paginate
     - [ ] file upload 
+  - [ ] admin panel
+    - [ ] order top nav
+    - [ ] order side nav
   - [ ] user rules
   - [ ] user profile
   - [ ] user auth (login and register [ for admin only ] )
-  - [ ] admin panel
+  - [ ] notification system
 
 
 ## Installation
@@ -29,7 +36,7 @@ composer install
 # copy .env file
 cp .env.example .env
 
-# to generate key for the app
+# generate key for the app
 php artisan key:generate 
 
 # install Svelte, Tailwindcss and Inertia dependencies
