@@ -23,6 +23,7 @@ Route::get('/view', [CarController::class, 'view']);
 
 Route::get('/create', [CarController::class, 'create']);
 Route::post('/create/store', [CarController::class, 'store']);
+Route::delete('/delete/{id}', [CarController::class, 'delete']);
 
 // test
 Route::get('/test', [CarController::class, 'test']);

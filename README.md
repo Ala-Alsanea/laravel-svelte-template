@@ -14,7 +14,7 @@
   - [ ] CRUD
     - [ ] select click box in view
     - [ ] sort in view
-    - [ ] delete modal
+    - [x] delete modal
     - [ ] update form
     - [x] form server side validation
     - [ ] paginate

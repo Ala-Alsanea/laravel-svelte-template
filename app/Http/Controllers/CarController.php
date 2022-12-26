@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Brand;
 use App\Models\Car;
-use App\Models\Color;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 use Inertia\Inertia;
+use App\Models\Brand;
+use App\Models\Color;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class CarController extends Controller
 {
@@ -79,9 +81,31 @@ class CarController extends Controller
         // dd($car);
 
 
-        return redirect('/');
+        return redirect("/view")->with('alerts', [
+            'success' => true,
+            'msg' => 'item was added successfully'
+        ]);
     }
 
+
+    protected function delete($id)
+    {
+
+        $car = Car::findOrFail($id);
+        // dd($car);
+
+        if ($car->deleteOrFail() === false) {
+            return response(
+                "Couldn't delete the car with id {id}",
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+        // return response(["id" => $id, "deleted" => true]);
+        return redirect()->back()->with('alerts', [
+            'warning' => true,
+            'msg' => 'item was deleted successfully'
+        ]);
+    }
 
     protected function test()
     {
