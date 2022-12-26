@@ -6,8 +6,10 @@
 <script>
     import { inertia, page } from "@inertiajs/inertia-svelte";
     // import Icon from "@iconify/svelte";
-    import DeleteModal from "../../components/modal/DeleteModal.svelte";
     import { Inertia } from "@inertiajs/inertia";
+    import DeleteModal from "../../components/modal/DeleteModal.svelte";
+    import Pagination from "../../components/modal/Pagination.svelte";
+
     export let cars;
     export let alerts;
     let counter = 0;
@@ -17,7 +19,7 @@
         Inertia.delete("/delete/" + id);
     }
 
-    $: console.log("alerts", alerts);
+    $: console.log("cars", cars);
 </script>
 
 <main>
@@ -107,6 +109,9 @@
                     </tr>
                 </tfoot>
             </table>
+
+            <!-- Pagination -->
+            <Pagination links={cars.links} />
         {:else}
             <div class="flex justify-center items-center">
                 <div class="card w-96 bg-primary text-white">
@@ -124,8 +129,6 @@
         <!-- <svelte: this={cars.links[0].label} /> -->
         <!-- {@html cars.links[0].label} -->
     </div>
-
-    <!-- modal -->
 </main>
 
 <svelte:head>
