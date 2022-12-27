@@ -6,15 +6,9 @@
 
 <script>
     import { Inertia } from "@inertiajs/inertia";
+    import { inertia } from "@inertiajs/inertia-svelte";
 
-    let data = {
-        model: null,
-        brand: "",
-        color: "",
-        price: null,
-        year: null,
-        description: null,
-    };
+    export let car;
 
     export let brands;
     let brandSelected;
@@ -30,22 +24,17 @@
     // fun
 
     function handelSubmit() {
-        console.log("post", data);
-        Inertia.post("/create/store", data);
-    }
-
-    $: {
-        data.brand = brandSelected;
-        data.color = colorSelected;
+        console.log("put", "edit/" + car.id);
+        Inertia.put(car.id, car);
     }
     $: {
-        errorList = Object.values(errors);
-        console.log("errorList", errorList);
+        // console.log(car);
     }
 </script>
 
 <main>
-    <h1 class="text-5xl font-bold mb-9 ml-8">create</h1>
+    <h1 class="text-5xl font-bold mb-9 ml-8">update</h1>
+
     <div class="border border-primary rounded-md p-5 mx-10 ">
         <form
             action=""
@@ -63,11 +52,11 @@
                     name="model"
                     class="input w-full  input-primary"
                     required
-                    bind:value={data.model}
+                    bind:value={car.model}
                 />
             </div>
 
-            <!-- brand & color -->
+            <!-- color & color -->
             <div class=" flex gap-2 flex-wrap">
                 <!-- brand -->
                 <div class="form-control w-full max-w-xs">
@@ -78,9 +67,9 @@
                         name="brand"
                         class="select  select-primary"
                         required
-                        bind:value={data.brand}
+                        bind:value={car.brand}
                     >
-                        <option disabled selected>{brandDefault}</option>
+                        <option disabled selected>{car.brand}</option>
                         {#each brands as brand}
                             <option>{brand.data}</option>
                         {/each}
@@ -96,9 +85,9 @@
                         name="color"
                         class="select select-primary"
                         required
-                        bind:value={data.color}
+                        bind:value={car.color}
                     >
-                        <option disabled selected>{colorDefault}</option>
+                        <option disabled selected>{car.color}</option>
                         {#each colors as color}
                             <option>{color.data}</option>
                         {/each}
@@ -119,7 +108,7 @@
                         name="price"
                         class="input w-full max-w-xs input-primary inline-flex"
                         required
-                        bind:value={data.price}
+                        bind:value={car.price}
                     />
                 </div>
 
@@ -134,7 +123,7 @@
                         name="year"
                         class="input  w-full max-w-xs input-primary"
                         required
-                        bind:value={data.year}
+                        bind:value={car.year}
                     />
                 </div>
             </div>
@@ -149,7 +138,7 @@
                     class="textarea textarea-primary  "
                     placeholder="description"
                     required
-                    bind:value={data.description}
+                    bind:value={car.description}
                 />
             </div>
 
@@ -162,7 +151,12 @@
                 </div>
             {/if}
 
-            <button class=" btn btn-success md:w-20"> submit</button>
+            <div class="btn-group flex justify-center mt-10">
+                <a href="/view" use:inertia class=" btn  btn-outline md:w-20">
+                    cancel</a
+                >
+                <button class=" btn btn-success  md:w-20"> submit</button>
+            </div>
         </form>
     </div>
 </main>

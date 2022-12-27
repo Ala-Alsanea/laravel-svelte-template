@@ -7,10 +7,10 @@
 
 <main>
     <div class=" text-center">
-        <div class="btn-group mt-5">
+        <div class="btn-group ">
             {#each links as link}
                 <a
-                    class="btn btn-outline "
+                    class="btn btn-outline"
                     class:btn-active={link.active}
                     class:btn-disabled={!link.url}
                     href={link.url}

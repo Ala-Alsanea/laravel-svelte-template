@@ -22,8 +22,13 @@ Route::get('/', function () {
 Route::get('/view', [CarController::class, 'view']);
 
 Route::get('/create', [CarController::class, 'create']);
+
+Route::get('/edit/{id}', [CarController::class, 'edit']);
 Route::post('/create/store', [CarController::class, 'store']);
+
 Route::delete('/delete/{id}', [CarController::class, 'delete']);
+Route::put('/edit/{id}', [CarController::class, 'update']);
+
 
 // test
 Route::get('/test', [CarController::class, 'test']);

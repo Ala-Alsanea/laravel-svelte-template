@@ -7,8 +7,8 @@
     import { inertia, page } from "@inertiajs/inertia-svelte";
     // import Icon from "@iconify/svelte";
     import { Inertia } from "@inertiajs/inertia";
-    import DeleteModal from "../../components/modal/DeleteModal.svelte";
-    import Pagination from "../../components/modal/Pagination.svelte";
+    import DeleteModal from "../../components/items/DeleteModal.svelte";
+    import Pagination from "../../components/items/Pagination.svelte";
 
     export let cars;
     export let alerts;
@@ -25,12 +25,13 @@
 <main>
     <!-- <Icon heigh="10" icon="mdi-light:alarm-plus" /> -->
     <!--  -->
-    <div class="overflow-x-auto px-3">
+    <div class="overflow-x-auto px-3 flex flex-col gap-5">
         {#if cars.total > 0}
             {#if alerts}
                 <div
-                    class="alert shadow-lg alert-error my-5 flex "
-                    class:alert-info={alerts.success}
+                    class="alert shadow-lg alert- my-5 flex "
+                    class:alert-success={alerts.success}
+                    class:alert-info={alerts.info}
                     class:alert-warning={alerts.warning}
                     class:alert-error={alerts.error}
                 >
@@ -49,10 +50,13 @@
                         >
 
                         <span>{alerts.msg}</span>
-                        <button class="btn btn-sm btn-circle btn-outline "
-                            >✕</button
-                        >
                     </div>
+                    <button
+                        on:click={() => {
+                            alerts = null;
+                        }}
+                        class="btn btn-sm btn-circle btn-outline ">✕</button
+                    >
                 </div>
             {/if}
             <table class="table table-zebra w-full">
@@ -76,7 +80,10 @@
                             <td>{car.color.data}</td>
                             <!-- BTNs -->
                             <td>
-                                <button class="btn btn-primary py-0">
+                                <button
+                                    use:inertia={{ href: "/edit/" + car.id }}
+                                    class="btn btn-primary py-0"
+                                >
                                     Update
                                 </button>
 

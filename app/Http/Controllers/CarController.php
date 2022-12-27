@@ -83,7 +83,86 @@ class CarController extends Controller
 
         return redirect("/view")->with('alerts', [
             'success' => true,
-            'msg' => 'item was added successfully'
+            'msg' => "$car->model was added successfully"
+        ]);
+    }
+
+
+
+    protected function edit($id)
+    {
+        //
+        $car = Car::findOrFail($id);
+        $colors = Color::select('id', 'data')->get();
+        $brands = Brand::select('id', 'data')->get();
+        // dd($car);
+
+
+        $color = Color::where('id', '=', $car['color_id'])->first();
+        $brand = Brand::where('id', '=', $car['brand_id'])->first();
+        // dd($color->data);
+
+        $car['color'] = $color->data;
+        unset($car['color_id']);
+
+        $car['brand'] = $brand->data;
+        unset($car['brand_id']);
+
+        // dd($car);
+
+        return inertia::render(
+            'pages/CRUD/Update',
+            [
+                'colors' => $colors,
+                'brands' => $brands,
+                'car' => $car
+            ]
+        );
+    }
+
+    protected function update(Request $request, $id)
+    {
+        //
+        // dd($request->car);
+        $car = Car::findOrFail($id)->first();
+
+        $newCar = $request->validate(
+            [
+                'model' => ['required', 'min:3'],
+                'price' => ['required', 'numeric'],
+                'year' => ['required', 'date'],
+                'description' => 'required',
+                'color' => ['required', Rule::exists('colors', 'data')],
+                'brand' => ['required', Rule::exists('brands', 'data')],
+            ]
+        );
+
+        $color = Color::where('data', '=', $newCar['color'])->first();
+        $brand = Brand::where('data', '=', $newCar['brand'])->first();
+
+
+
+
+        $newCar['color_id'] = $color->id;
+        unset($newCar['color']);
+
+        $newCar['brand_id'] = $brand->id;
+        unset($newCar['brand']);
+
+        // dd($newCar);
+
+        // if ($car === $newCar) {
+        //     return redirect("/view")->with('alerts', [
+        //         'error' => true,
+        //         'msg' => "$car->model was NOT updated "
+        //     ]);
+        // }
+
+        $car->update($newCar);
+
+        return redirect("/view")->with('alerts', [
+            'info' => true,
+            'msg' => "$car->model was updated successfully"
         ]);
     }
 
@@ -92,7 +171,9 @@ class CarController extends Controller
     {
 
         $car = Car::findOrFail($id);
-        // dd($car);
+        // dd($car->model);
+        $car_ = $car;
+
 
         if ($car->deleteOrFail() === false) {
             return response(
@@ -100,10 +181,10 @@ class CarController extends Controller
                 Response::HTTP_BAD_REQUEST
             );
         }
-        // return response(["id" => $id, "deleted" => true]);
+
         return redirect()->back()->with('alerts', [
             'warning' => true,
-            'msg' => 'item was deleted successfully'
+            'msg' => "$car->model was deleted successfully"
         ]);
     }
 
@@ -112,8 +193,6 @@ class CarController extends Controller
 
         // $car = Car::with('color', 'brand')->paginate(4);
         // dd(gettype(Car::class));
-        $color = Color::get();
-
-        dd($color);
+        abort(404);
     }
 }
