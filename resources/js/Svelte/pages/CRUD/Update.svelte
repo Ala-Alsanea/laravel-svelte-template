@@ -30,7 +30,7 @@
 <main>
     <Alert {alerts} />
 
-    <h1 class="text-5xl font-bold mb-9 ml-8">update</h1>
+    <h1 class="text-5xl font-bold mb-9 ml-8">Update No. {car.id}</h1>
 
     <div class="border border-primary rounded-md p-5 mx-10 ">
         <form
