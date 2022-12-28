@@ -7,17 +7,12 @@
 <script>
     import { Inertia } from "@inertiajs/inertia";
     import { inertia } from "@inertiajs/inertia-svelte";
+    import Alert from "../../components/items/Alert.svelte";
 
+    export let alerts;
     export let car;
-
     export let brands;
-    let brandSelected;
-    let brandDefault = "Pick one";
-
     export let colors;
-    let colorSelected;
-    let colorDefault = "Pick one";
-
     export let errors;
     let errorList = [];
 
@@ -28,15 +23,18 @@
         Inertia.put(car.id, car);
     }
     $: {
-        // console.log(car);
+        errorList = Object.values(errors);
     }
 </script>
 
 <main>
+    <Alert {alerts} />
+
     <h1 class="text-5xl font-bold mb-9 ml-8">update</h1>
 
     <div class="border border-primary rounded-md p-5 mx-10 ">
         <form
+            method="post"
             action=""
             on:submit|preventDefault={handelSubmit}
             class="flex flex-col gap-3 "
@@ -150,6 +148,7 @@
                     {/each}
                 </div>
             {/if}
+            <Alert {alerts} />
 
             <div class="btn-group flex justify-center mt-10">
                 <a href="/view" use:inertia class=" btn  btn-outline md:w-20">
@@ -162,5 +161,5 @@
 </main>
 
 <svelte:head>
-    <title>create</title>
+    <title>update</title>
 </svelte:head>

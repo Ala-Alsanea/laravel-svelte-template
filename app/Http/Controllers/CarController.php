@@ -88,7 +88,6 @@ class CarController extends Controller
     }
 
 
-
     protected function edit($id)
     {
         //
@@ -149,6 +148,7 @@ class CarController extends Controller
         $newCar['brand_id'] = $brand->id;
         unset($newCar['brand']);
 
+        $newCar = new Car($newCar);
         // dd($newCar);
 
         // if ($car === $newCar) {
@@ -158,11 +158,14 @@ class CarController extends Controller
         //     ]);
         // }
 
-        $car->update($newCar);
 
-        return redirect("/view")->with('alerts', [
+        $car->where('id', $id)->update($newCar->toArray());
+        // dd($car);
+        // $car->save();
+
+        return redirect()->back()->with('alerts', [
             'info' => true,
-            'msg' => "$car->model was updated successfully"
+            'msg' => "$newCar->model was updated successfully"
         ]);
     }
 
