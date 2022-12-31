@@ -16,11 +16,14 @@ class CarController extends Controller
 {
     //
 
-    protected  function view()
+    protected  function view(Request $request)
     {
 
         $cars = Car::with('color:id,data', 'brand:id,data')->select('id', 'model', 'color_id', 'brand_id')->orderby('id', 'desc')->paginate(5);
         // dd($cars);
+
+        unset($cars['color_id']);
+        unset($cars['brand_id']);
 
 
         return inertia::render(
@@ -187,7 +190,7 @@ class CarController extends Controller
 
         return redirect()->back()->with('alerts', [
             'warning' => true,
-            'msg' => "$car->model was deleted successfully"
+            'msg' => "$car->model with No. $car->id was deleted successfully"
         ]);
     }
 

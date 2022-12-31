@@ -28,7 +28,7 @@
 </script>
 
 <main>
-    <Alert {alerts} />
+    <!-- <Alert {alerts} /> -->
 
     <h1 class="text-5xl font-bold mb-9 ml-8">Update No. {car.id}</h1>
 
@@ -152,7 +152,7 @@
 
             <div class="btn-group flex justify-center mt-10">
                 <a href="/view" use:inertia class=" btn  btn-outline md:w-20">
-                    cancel</a
+                    go back</a
                 >
                 <button class=" btn btn-success  md:w-20"> submit</button>
             </div>

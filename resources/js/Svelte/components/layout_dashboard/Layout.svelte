@@ -41,9 +41,11 @@
     <div class="flex items-start">
         <Overlay />
         <SideNavigation bind:DataItem mobilePosition="right" />
-        <div class="mainContainer {style.mainContainer}">
+        <div class="mainContainer bg-primary {style.mainContainer}">
             <TopNavigation />
-            <main class="main {style.main}">
+            <main
+                class="main rounded-2xl bg-white m-2 mt-0 md:ml-0  {style.main}"
+            >
                 <slot />
             </main>
         </div>
@@ -51,9 +53,6 @@
 </div>
 
 <style>
-    @tailwind base;
-    @tailwind components;
-    @tailwind utilities;
     .container {
         @apply h-screen overflow-hidden relative;
     }

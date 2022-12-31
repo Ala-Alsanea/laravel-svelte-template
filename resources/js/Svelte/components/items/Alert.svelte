@@ -6,7 +6,7 @@
 <main>
     {#if alerts}
         <div
-            class="alert shadow-lg alert- my-2 flex "
+            class="alert shadow-lg alert- my-2 flex w-full "
             class:alert-success={alerts.success}
             class:alert-info={alerts.info}
             class:alert-warning={alerts.warning}

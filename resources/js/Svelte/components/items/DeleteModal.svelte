@@ -1,11 +1,12 @@
 <script>
     //
-    export var id = "delete";
-    export var headerText = "This item will be deleted";
-    export var detailsText = "";
-    export var callback = () => {};
+    export let id = "delete";
+    export let headerText = "This item will be deleted";
+    export let detailsText = "";
+    export let callback = () => {};
+    export let XBtnCallback = () => {};
 
-    var deleteBtnClk = false;
+    let btnClk = false;
 </script>
 
 <main>
@@ -15,6 +16,9 @@
         <div class="modal-box">
             <label
                 for={id}
+                on:click={() => {
+                    XBtnCallback();
+                }}
                 class="btn btn-sm  btn-circle btn-outline absolute right-2 top-2"
                 >✕</label
             >
@@ -29,11 +33,11 @@
                 <label for={id} class="btn btn-ghost">cancel</label>
                 <label
                     on:click={() => {
-                        deleteBtnClk = true;
+                        btnClk = true;
                         callback();
-                        deleteBtnClk = !deleteBtnClk;
+                        btnClk = !btnClk;
                     }}
-                    class:loading={deleteBtnClk}
+                    class:loading={btnClk}
                     for={id}
                     class="btn btn-error ">Delete</label
                 >

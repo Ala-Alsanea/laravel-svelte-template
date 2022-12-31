@@ -7,7 +7,7 @@
 </script>
 
 <header
-    class="bg-primary h-20 items-center relative z-10 border-b-2 border-b-base-content"
+    class="bg-primary h-20 items-center relative z-10 border-b-base-content"
 >
     <div
         class="flex flex-center flex-col h-full justify-center mx-auto px-3 relative"

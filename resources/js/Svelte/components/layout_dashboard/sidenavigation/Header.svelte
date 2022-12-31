@@ -1,5 +1,14 @@
+<script>
+    export let userInfo = { rule: "admin", username: "dora" };
+</script>
+
 <div
-    class=" flex p-4 items-center justify-center mb-16 sticky text-white text-2xl top-0 bg-primary"
+    class="flex flex-col gap-3 p-4 m-2 items-center justify-center   sticky text-white text-2xl font-semibolds top-0 hover:bg-primary-focus rounded-md capitalize"
 >
-    Smart Admin
+    <h1>
+        {userInfo.rule}
+    </h1>
+    <h2 class="text-base">
+        <!-- {userInfo.username} -->
+    </h2>
 </div>

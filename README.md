@@ -11,7 +11,6 @@
 
 
 ## Feature [ ToDo ]
-  - [ ] user auth (login and register [ for admin only ] )
   - [ ] CRUD
     - [ ] select click box in view
     - [ ] sort in view
@@ -20,9 +19,10 @@
     - [x] form server side validation
     - [x] paginate
     - [ ] file upload 
-  - [ ] admin panel
+  - [ ] admin panel enhancement
     - [ ] order top nav
     - [ ] order side nav
+  - [ ] user auth (login and register [ for admin only ] )
   - [ ] user rules
   - [ ] user profile
   - [ ] notification system
