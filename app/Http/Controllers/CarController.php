@@ -19,8 +19,10 @@ class CarController extends Controller
     protected  function view(Request $request)
     {
 
-        $cars = Car::with('color:id,data', 'brand:id,data')->select('id', 'model', 'color_id', 'brand_id')->orderby('id', 'desc')->paginate(5);
-        // dd($cars);
+        $per_page = $request->per_page != null ? $request->per_page : 10;
+
+        $cars = Car::with('color:id,data', 'brand:id,data')->select('id', 'model', 'color_id', 'brand_id')->orderby('id', 'desc')->paginate($per_page);
+        // dd($request->per_page);
 
         unset($cars['color_id']);
         unset($cars['brand_id']);

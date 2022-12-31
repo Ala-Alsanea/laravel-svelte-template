@@ -6,8 +6,8 @@
 
     const style = {
         title: `ml-2 text-sm`,
-        section: ` text-white text-left text-lg  w-full capitalize collapse-title`,
-        active: `border-none font-bold bg-white hover:text-white text-primary btn  hover:bg-gray-900 `,
+        section: `text-white text-left text-lg  w-full capitalize collapse-title`,
+        active: `border-none font-bold bg-white text-primary-focus hover:text-gray-200`,
         link: `flex items-center text-gray-200 justify-start my-2 p-3 w-full h-full text-xs  btn btn-ghost hover:bg-gray-900 `,
     };
 </script>

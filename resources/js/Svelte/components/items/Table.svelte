@@ -1,6 +1,7 @@
 <script>
     import { Inertia } from "@inertiajs/inertia";
     import { inertia } from "@inertiajs/inertia-svelte";
+    import { empty, is_empty } from "svelte/internal";
     import Alert from "./Alert.svelte";
     import DeleteModal from "./DeleteModal.svelte";
     import Pagination from "./Pagination.svelte";
@@ -9,12 +10,22 @@
     export let alerts;
     export let tableName = "table name";
     export let colNames = [];
+    export let per_page = 10;
+    export let nums = [10, 50, 100];
     let dataList;
     let CreateBtnClk = false;
 
     $: {
-        dataList = Object.values(resources.data);
-        console.log(dataList);
+        // dataList = Object.keys(resources.data[0]);
+        // dataList = dataList.filter((value) => {
+        //     return "_id" != value.slice(-3);
+        // });
+        // console.log(is_empty(resources.data));
+        if (is_empty(resources.data)) {
+            Inertia.get(
+                resources.last_page_url + "&per_page=" + resources.per_page
+            );
+        }
     }
 
     export let handleDelete = (id) => {
@@ -56,8 +67,20 @@
         </div>
         {#if resources.total > 0}
             <Alert {alerts} />
-
-            <table class="table table-compact w-full">
+            <!-- Pagination -->
+            <Pagination
+                bind:per_page
+                bind:nums
+                links={resources.links}
+                current_path={resources.path +
+                    "?page=" +
+                    resources.current_page}
+            />
+            <!--  -->
+            <table
+                class="table table-zebra w-full"
+                class:table-compact={per_page == 100}
+            >
                 <!-- head -->
                 <thead>
                     <tr>
@@ -111,12 +134,23 @@
                         {#each colNames as colName}
                             <th>{colName}</th>
                         {/each}
+                        <th>Action</th>
                     </tr>
                 </tfoot>
             </table>
 
+            <Alert {alerts} />
+
             <!-- Pagination -->
-            <Pagination links={resources.links} />
+            <Pagination
+                id="bottom"
+                bind:per_page
+                bind:nums
+                links={resources.links}
+                current_path={resources.path +
+                    "?page=" +
+                    resources.current_page}
+            />
             <!--  -->
         {:else}
             <div class="flex justify-center items-center">
