@@ -28,19 +28,19 @@
     let errorList = [];
 
     // fun
+    $: {
+        errorList = Object.values(errors);
+        console.log("errorList", errorList);
+    }
 
     function handelSubmit() {
         console.log("post", data);
-        Inertia.post("/create/store", data);
+        Inertia.post("/cars", data);
     }
 
     $: {
         data.brand = brandSelected;
         data.color = colorSelected;
-    }
-    $: {
-        errorList = Object.values(errors);
-        console.log("errorList", errorList);
     }
 </script>
 

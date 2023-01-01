@@ -13,19 +13,21 @@
 ## Feature [ ToDo ]
   - [ ] CRUD
     - [ ] select click box in view
-    - [ ] sort in view
+    - [ ] sort in table
     - [x] delete modal
     - [x] update form
     - [x] form server side validation
     - [x] paginate
+    - [ ] detail page
     - [ ] file upload 
   - [ ] admin panel enhancement
     - [ ] order top nav
-    - [ ] order side nav
+    - [x] order side nav
   - [ ] user auth (login and register [ for admin only ] )
   - [ ] user rules
   - [ ] user profile
   - [ ] notification system
+  - [ ] landing page
 
 
 ## Installation

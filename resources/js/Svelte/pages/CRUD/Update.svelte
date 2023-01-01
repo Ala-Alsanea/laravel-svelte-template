@@ -18,9 +18,9 @@
 
     // fun
 
-    function handelSubmit() {
-        console.log("put", "edit/" + car.id);
-        Inertia.put(car.id, car);
+    function handelSubmit(id) {
+        console.log("put", "cars/" + id);
+        Inertia.put("/cars/" + id, car);
     }
     $: {
         errorList = Object.values(errors);
@@ -36,7 +36,9 @@
         <form
             method="post"
             action=""
-            on:submit|preventDefault={handelSubmit}
+            on:submit|preventDefault={() => {
+                handelSubmit(car.id);
+            }}
             class="flex flex-col gap-3 "
         >
             <!-- model -->
@@ -151,7 +153,7 @@
             <Alert {alerts} />
 
             <div class="btn-group flex justify-center mt-10">
-                <a href="/view" use:inertia class=" btn  btn-outline md:w-20">
+                <a href="/cars" use:inertia class=" btn  btn-outline md:w-20">
                     go back</a
                 >
                 <button class=" btn btn-success  md:w-20"> submit</button>

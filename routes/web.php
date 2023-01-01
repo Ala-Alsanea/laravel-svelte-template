@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\CarController;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CarController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,17 +18,42 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return redirect('/view');
+    return Inertia::render('pages/landing_page_v1/Index');
 });
-Route::get('/view', [CarController::class, 'view']);
 
-Route::get('/create', [CarController::class, 'create']);
 
-Route::get('/edit/{id}', [CarController::class, 'edit']);
-Route::post('/create/store', [CarController::class, 'store']);
 
-Route::delete('/delete/{id}', [CarController::class, 'delete']);
-Route::put('/edit/{id}', [CarController::class, 'update']);
+// auth
+Route::get('/auth/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/auth/login', [AuthController::class, 'login']);
+Route::get('/auth/logout', [AuthController::class, 'logout']);
+
+
+
+
+// crud
+//
+Route::group(
+    ['middleware' => 'auth'],
+    function () {
+
+
+
+
+        // view all
+        Route::get('/cars', [CarController::class, 'index']);
+        // create
+        Route::get('/cars/create', [CarController::class, 'create']);
+        Route::post('/cars', [CarController::class, 'store']);
+        // update
+        Route::get('/cars/{id}/edit', [CarController::class, 'edit']);
+        Route::put('/cars/{id}', [CarController::class, 'update']);
+        // delete
+        Route::delete('/cars/{id}', [CarController::class, 'destroy']);
+    }
+);
+
+
 
 
 // test

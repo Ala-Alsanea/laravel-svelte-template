@@ -12,8 +12,8 @@
     /*w-[calc(100%-16rem)] class get the remain width of the main tag from lg:viewport by subtracting
 	(the total width by the width of the side navigation component which is w-64 = 16rem)*/
 
-    export let DataItem;
-
+    export let SideLinks;
+    export let AvatarLinks;
     const style = {
         container: `  h-screen overflow-hidden relative`,
         mainContainer: `lg:w-[calc(100%-16rem)] `,
@@ -40,9 +40,9 @@
 <div class="container  ">
     <div class="flex items-start">
         <Overlay />
-        <SideNavigation bind:DataItem mobilePosition="right" />
+        <SideNavigation bind:SideLinks mobilePosition="right" />
         <div class="mainContainer bg-primary {style.mainContainer}">
-            <TopNavigation />
+            <TopNavigation bind:AvatarLinks />
             <main
                 class="main rounded-2xl bg-white m-2 mt-0 md:ml-0  {style.main}"
             >

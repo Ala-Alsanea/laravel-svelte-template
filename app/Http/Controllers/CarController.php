@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
-use Inertia\Inertia;
 use App\Models\Brand;
 use App\Models\Color;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
@@ -16,13 +16,13 @@ class CarController extends Controller
 {
     //
 
-    protected  function view(Request $request)
+    protected  function index(Request $request)
     {
 
         $per_page = $request->per_page != null ? $request->per_page : 10;
 
         $cars = Car::with('color:id,data', 'brand:id,data')->select('id', 'model', 'color_id', 'brand_id')->orderby('id', 'desc')->paginate($per_page);
-        // dd($request->per_page);
+        // dd(auth()->user());
 
         unset($cars['color_id']);
         unset($cars['brand_id']);
@@ -86,7 +86,7 @@ class CarController extends Controller
         // dd($car);
 
 
-        return redirect("/view")->with('alerts', [
+        return redirect("/cars")->with('alerts', [
             'success' => true,
             'msg' => "$car->model was added successfully"
         ]);
@@ -175,7 +175,7 @@ class CarController extends Controller
     }
 
 
-    protected function delete($id)
+    protected function destroy($id)
     {
 
         $car = Car::findOrFail($id);
@@ -195,7 +195,7 @@ class CarController extends Controller
             'msg' => "$car->model with No. $car->id was deleted successfully"
         ]);
     }
-
+    //
     protected function test()
     {
 

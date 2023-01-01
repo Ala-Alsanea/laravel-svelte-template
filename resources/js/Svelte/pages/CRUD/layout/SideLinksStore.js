@@ -5,22 +5,17 @@ import ServersIcon from "./icons/ServersIcon.svelte";
 import TerminalIcon from "./icons/TerminalIcon.svelte";
 import RecycleBinIcon from "./icons/RecycleBin.svelte";
 import DocumentationIcon from "./icons/DocumentationIcon.svelte";
+import { writable } from "svelte/store";
 
-const data = [
+let SideLinksStore = writable([
     {
         section: "tab 1",
         content: [
             {
-                title: "view",
+                title: "cars",
                 icon: MediasIcon,
-                link: "/view",
+                link: "/cars",
                 component: "pages/CRUD/View",
-            },
-            {
-                title: "create",
-                icon: MediasIcon,
-                link: "/create",
-                component: "pages/CRUD/Create",
             },
 
             {
@@ -40,12 +35,6 @@ const data = [
                 link: "/view",
                 component: "pages/CRUD/View",
             },
-            {
-                title: "create",
-                icon: MediasIcon,
-                link: "/create",
-                component: "pages/CRUD/Create",
-            },
 
             {
                 title: "not found 404",
@@ -55,6 +44,6 @@ const data = [
             },
         ],
     },
-];
+]);
 
-export default data;
+export default SideLinksStore;

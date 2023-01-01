@@ -1,11 +1,22 @@
 <script>
     import { onMount } from "svelte";
+    import AvatarLinksStore from "./AvatarLinksStore";
+    import SideLinksStore from "./SideLinksStore";
     import LayoutDashboard from "../../../components/layout_dashboard/Layout.svelte";
-    import data from "./data";
+    import data from "./SideLinksStore";
 
-    let _Data = data;
+    let SideLinks = data;
+    let AvatarLinks = [];
+
+    AvatarLinksStore.subscribe((data) => {
+        AvatarLinks = data;
+    });
+
+    SideLinksStore.subscribe((data) => {
+        SideLinks = data;
+    });
 </script>
 
-<LayoutDashboard bind:DataItem={_Data}>
+<LayoutDashboard bind:SideLinks bind:AvatarLinks>
     <slot><!-- optional fallback --></slot>
 </LayoutDashboard>

@@ -29,19 +29,19 @@
     }
 
     export let handleDelete = (id) => {
-        console.log("/delete/" + id);
-        Inertia.delete("/delete/" + id);
+        console.log("/cars/" + id);
+        Inertia.delete("/cars/" + id);
     };
 
     export let handleUpdate = (id) => {
-        console.log("/edit/" + id);
-        Inertia.get("/edit/" + id);
+        console.log("/cars/" + id + "/edit");
+        Inertia.get("/cars/" + id + "/edit");
     };
 
     export let handleCerate = () => {
         CreateBtnClk = !CreateBtnClk;
-        console.log("/create");
-        Inertia.get("/create");
+        console.log("/cars/create");
+        Inertia.get("/cars/create");
     };
 </script>
 
@@ -143,7 +143,6 @@
 
             <!-- Pagination -->
             <Pagination
-                id="bottom"
                 bind:per_page
                 bind:nums
                 links={resources.links}

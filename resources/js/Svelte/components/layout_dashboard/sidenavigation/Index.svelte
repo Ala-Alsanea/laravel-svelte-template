@@ -4,7 +4,7 @@
     import SidenavHeader from "./Header.svelte";
     import { clickOutside } from "../provider/click-outside";
 
-    export let DataItem;
+    export let SideLinks;
     export let mobilePosition = "right";
 
     const style = {
@@ -35,7 +35,7 @@
     <div class={style.container}>
         <!-- <div class="border-r-2 border-r-base-content   "> -->
         <SidenavHeader />
-        <SidenavItems {DataItem} />
+        <SidenavItems {SideLinks} />
         <!-- </div> -->
     </div>
 </aside>
