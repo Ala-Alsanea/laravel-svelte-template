@@ -25,9 +25,10 @@
     - [x] order side nav
   - [ ] user auth (login and register [ for admin only ] )
   - [ ] user rules
-  - [ ] user profile
+  - [ ] user profile 
   - [ ] notification system
   - [ ] landing page
+  - [ ] 
 
 
 ## Installation
@@ -61,3 +62,6 @@ npm run dev
 # build svelte and Inertia app
 npm run build 
 ```
+## issues
+- [x] store user info and not to bring it with every request 
+  -  bring user name only or access from $page var in svelte

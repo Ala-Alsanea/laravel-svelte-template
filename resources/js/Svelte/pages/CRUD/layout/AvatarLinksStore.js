@@ -1,9 +1,8 @@
 import { writable } from "svelte/store";
 
-let AvatarLinksStore = writable([
-    {
-        title: "test",
-        link: "/cars/create",
+const AvatarLinksStore = writable([{
+        title: "Profile",
+        link: "/user/",
     },
     {
         title: "Settings",

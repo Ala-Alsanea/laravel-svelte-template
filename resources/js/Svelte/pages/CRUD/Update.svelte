@@ -7,7 +7,7 @@
 <script>
     import { Inertia } from "@inertiajs/inertia";
     import { inertia } from "@inertiajs/inertia-svelte";
-    import Alert from "../../components/items/Alert.svelte";
+    import Alert from "../../shared/items/Alert.svelte";
 
     export let alerts;
     export let car;

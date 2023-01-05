@@ -7,7 +7,7 @@
     import { inertia, page } from "@inertiajs/inertia-svelte";
     // import Icon from "@iconify/svelte";
     import { Inertia } from "@inertiajs/inertia";
-    import Table from "../../components/items/Table.svelte";
+    import Table from "../../shared/items/Table.svelte";
 
     export let cars;
     export let alerts;

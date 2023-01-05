@@ -1,9 +1,14 @@
 <!-- svelte-ignore a11y-missing-attribute -->
 <script>
-    import { inertia } from "@inertiajs/inertia-svelte";
+    import { Inertia } from "@inertiajs/inertia";
+    import { inertia, page } from "@inertiajs/inertia-svelte";
     import { open } from "../provider/store";
+    import ColorStore from "./../theme/ColorStore.js";
+    //
+    let color;
 
-    let username = "aa";
+    let props = $page.props;
+    export let user;
     export let AvatarLinks = [
         {
             title: "profile",
@@ -19,6 +24,12 @@
         },
     ];
 
+    // ColorStore.subscribe((data) => {
+    //     color = data;
+    // });
+
+    // $: console.log(user);
+
     const toggle = () => {
         $open = !$open;
     };
@@ -30,13 +41,12 @@
     class="bg-primary h-20 items-center relative z-10 border-b-base-content"
 >
     <div
-        class="flex flex-center flex-col h-full  justify-center mx-auto px-3 relative"
+        class="flex flex-center flex-col h-full  justify-center mx-auto px-3 relative "
     >
         <div
-            class="flex gap-4 items-center pl-1 relative w-full sm:pr-2 sm:ml-0 lg:max-w-68
-             "
+            class=" flex justify-between gap-4 items-center pl-1  w-full sm:pr-2 sm:ml-0 lg:max-w-68 rounded-lg py-2 my-10 "
         >
-            <!--  -->
+            <!-- toggle btm -->
             <div class="container flex left-0 relative w-3/4">
                 <div class="flex group h-full items-center relative w-12">
                     <button
@@ -44,22 +54,22 @@
                         aria-expanded="false"
                         aria-label="Toggle sidenav"
                         on:click={toggle}
-                        class="text-4xl text-white focus:outline-none lg:hidden"
+                        class="text-4xl text-black focus:outline-none lg:hidden"
                     >
                         &#8801;
                     </button>
                 </div>
             </div>
             <!-- search -->
-            <form on:submit|preventDefault class="form-control">
-                <div class="input-group">
+            <form on:submit|preventDefault class="form-contro hidden">
+                <div class="input-group ">
                     <input
                         type="text"
                         placeholder="Search…"
-                        class="input input-bordered"
+                        class="input input-bordered border-primary-focus border-2"
                     />
                     <button
-                        class="btn btn-square bg-neutral-focus text-white hover:bg-white hover:text-black"
+                        class="btn btn-square bg-primary-focus text-white hover:bg-white hover:text-black hover:border-primary-focus border-primary-focus border-2 border-l-0"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -77,16 +87,8 @@
                     </button>
                 </div>
             </form>
-            <!-- avatar -->
-            <!-- <div class="avatar placeholder">
-                <div
-                    class="bg-neutral-focus text-neutral-content rounded-full w-12"
-                >
-                    <span>MX</span>
-                </div>
-            </div> -->
 
-            <!--  -->
+            <!-- avatar -->
 
             <div class="dropdown dropdown-end">
                 <label
@@ -98,7 +100,10 @@
                         <div
                             class="bg-neutral-focus text-white hover:bg-white hover:text-black rounded-full w-11"
                         >
-                            <span>{username}</span>
+                            <span>
+                                {props.auth.user.username.slice(0, 1)}
+                                <!-- {user ? user.username.slice(0, 1) : ""} -->
+                            </span>
                         </div>
                     </div>
                 </label>
@@ -111,7 +116,14 @@
                         <li>
                             <button
                                 class="capitalize"
-                                use:inertia={{ href: AvatarLink.link }}
+                                use:inertia={{
+                                    href:
+                                        AvatarLink.title == "Profile" &&
+                                        props.auth.user
+                                            ? AvatarLink.link +
+                                              props.auth.user.id
+                                            : AvatarLink.link,
+                                }}
                             >
                                 {AvatarLink.title}
                             </button>

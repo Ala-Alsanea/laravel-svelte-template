@@ -1,6 +1,6 @@
 <script>
     import { onMount } from "svelte";
-    import LayoutDashboard from "../../../components/layout_dashboard/Layout.svelte";
+    import LayoutDashboard from "../../../shared/layout_dashboard/Layout.svelte";
     import data from "./data";
 
     let _Data = data;

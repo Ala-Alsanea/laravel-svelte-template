@@ -3,8 +3,9 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CarController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\auth\UserController;
+use App\Http\Controllers\resource\CarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,10 +35,14 @@ Route::get('/auth/logout', [AuthController::class, 'logout']);
 // crud
 //
 Route::group(
-    ['middleware' => 'auth'],
+    [
+        'middleware' => 'auth',
+        'prefix' => ''
+    ],
     function () {
 
-
+        // auth
+        Route::get('/user/{id}', [UserController::class, 'profile']);
 
 
         // view all

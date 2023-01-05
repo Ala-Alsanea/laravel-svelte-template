@@ -4,6 +4,8 @@
 
     export let SideLinks = data;
 
+    // console.log("page item", page.url);
+
     const style = {
         title: `ml-2 text-sm`,
         section: `text-white text-left text-lg  w-full capitalize collapse-title`,

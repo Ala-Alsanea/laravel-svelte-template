@@ -1,22 +1,23 @@
 <script>
     import { Inertia } from "@inertiajs/inertia";
-    import { inertia } from "@inertiajs/inertia-svelte";
+    import { inertia, useForm } from "@inertiajs/inertia-svelte";
 
     //
-    let loginInfo = { email: "", password: "" };
+    useForm;
+    let loginInfo = useForm({ email: "test@example.com", password: "123" });
 
-    export let errors;
     let errorList = [];
 
     // fun
     $: {
-        errorList = Object.values(errors);
-        console.log("errorList", errorList);
-        console.log("errors", errors);
+        errorList = Object.values($loginInfo.errors);
+        // console.log("errorList", errorList);
+
+        // console.log("loginInfo", $loginInfo);
     }
 
     let handelSubmit = () => {
-        Inertia.post("/auth/login", loginInfo);
+        $loginInfo.post("/auth/login", loginInfo);
     };
 </script>
 
@@ -25,12 +26,14 @@
 <main>
     <!--  -->
     <h1 class="text-5xl font-bold text-center my-20 capitalize">login</h1>
-    <div class="border border-primary rounded-md p-5 mx-96 ">
+    <div
+        class="border border-primary rounded-md items-center w-max m-auto bg-gray-50"
+    >
         <form
             action="/auth/login"
             method="post"
             on:submit|preventDefault={handelSubmit}
-            class="flex flex-col gap-3 items-center"
+            class="flex flex-col gap-10 items-center px-20 py-10"
         >
             <!-- email -->
             <div class=" w-full max-w-xs">
@@ -42,7 +45,7 @@
                     placeholder="Type here"
                     name="email"
                     class="input w-full  input-primary"
-                    bind:value={loginInfo.email}
+                    bind:value={$loginInfo.email}
                 />
             </div>
 
@@ -56,7 +59,7 @@
                     placeholder="Type here"
                     name="password"
                     class="input w-full  input-primary"
-                    bind:value={loginInfo.password}
+                    bind:value={$loginInfo.password}
                 />
             </div>
 
@@ -69,7 +72,12 @@
                 </div>
             {/if}
 
-            <button class=" btn btn-primary md:w-20"> login</button>
+            <button
+                class=" btn btn-primary"
+                class:loading={$loginInfo.processing}
+            >
+                login
+            </button>
         </form>
     </div>
 </main>

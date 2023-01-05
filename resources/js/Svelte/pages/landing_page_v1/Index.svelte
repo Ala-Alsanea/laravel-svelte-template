@@ -1,5 +1,5 @@
 <script>
-    import Compo from "../../components/Compo.svelte";
+    import Compo from "../../shared/Compo.svelte";
     import Hero from "./sections/Hero.svelte";
 
     //

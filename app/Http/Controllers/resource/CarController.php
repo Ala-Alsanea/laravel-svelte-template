@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\resource;
 
 use App\Models\Car;
+use Inertia\Inertia;
 use App\Models\Brand;
 use App\Models\Color;
-use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 
