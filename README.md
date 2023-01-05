@@ -24,11 +24,11 @@
     - [ ] order top nav
     - [x] order side nav
   - [ ] user auth (login and register [ for admin only ] )
-  - [ ] user rules
+  - [ ] user roles
   - [ ] user profile 
-  - [ ] notification system
   - [ ] landing page
-  - [ ] 
+  - [ ] notification system
+  
 
 
 ## Installation
