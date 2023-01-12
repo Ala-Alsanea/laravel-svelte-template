@@ -11,7 +11,7 @@
 
 
 ## Feature [ ToDo ]
-  - [ ] CRUD
+  - [x] CRUD
     - [ ] select click box in view
     - [ ] sort in table
     - [x] delete modal
@@ -20,10 +20,12 @@
     - [x] paginate
     - [ ] detail page
     - [ ] file upload 
+    - [ ] search
   - [ ] admin panel enhancement
     - [ ] order top nav
     - [x] order side nav
-  - [ ] user auth (login and register [ for admin only ] )
+  - [X] user auth (login )
+    - [ ] register [ for admin only ]
   - [ ] user roles
   - [ ] user profile 
   - [ ] landing page
@@ -65,3 +67,8 @@ npm run build
 ## issues
 - [x] store user info and not to bring it with every request 
   -  bring user name only or access from $page var in svelte
+- [x] change the res and routes
+- [x] split users UIs
+- [x] create user
+- [ ] fix avatar store 
+- [ ] fix profile auth 
