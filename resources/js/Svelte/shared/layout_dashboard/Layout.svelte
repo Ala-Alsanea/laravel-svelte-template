@@ -41,11 +41,14 @@
     <div class="flex items-start">
         <Overlay />
         <SideNavigation bind:SideLinks mobilePosition="right" />
-        <div class="mainContainer bg-primary {style.mainContainer}">
-            <TopNavigation bind:user bind:AvatarLinks />
-            <main
-                class="main rounded-2xl bg-white m-2 mt-0 md:ml-0  {style.main}"
-            >
+        <div class="mainContainer bg-primary-focus   {style.mainContainer}">
+            <div class="">
+                <TopNavigation bind:user bind:AvatarLinks />
+            </div>
+            <main class="main rounded-2xl bg-white m-2 mt-0   {style.main}">
+                <!-- <div class="md:hidden lg:visible">
+                    <TopNavigation bind:user bind:AvatarLinks />
+                </div> -->
                 <slot />
             </main>
         </div>

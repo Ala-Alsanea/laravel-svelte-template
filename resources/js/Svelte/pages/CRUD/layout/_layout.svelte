@@ -7,11 +7,22 @@
     import { Inertia } from "@inertiajs/inertia";
     import { page, inertia } from "@inertiajs/inertia-svelte";
 
-    let props = Inertia.page.props;
     let SideLinks = data;
     let AvatarLinks = [];
 
-    // console.log("page", $page);
+    console.log("page", $page);
+
+    if ($AvatarLinksStore.length < 3) {
+        AvatarLinksStore.update((current) => {
+            return [
+                {
+                    title: `Profile - (${$page.props.auth.user.username})`,
+                    link: `/user/${$page.props.auth.user.id}`,
+                },
+                ...current,
+            ];
+        });
+    }
 
     AvatarLinksStore.subscribe((data) => {
         AvatarLinks = data;
@@ -20,6 +31,7 @@
     SideLinksStore.subscribe((data) => {
         SideLinks = data;
     });
+    console.log("$AvatarLinksStore", $AvatarLinksStore);
 </script>
 
 <LayoutDashboard bind:SideLinks bind:AvatarLinks>

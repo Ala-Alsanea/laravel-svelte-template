@@ -5,7 +5,9 @@ namespace App\Http\Controllers\auth;
 
 use Inertia\inertia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Inertia\Response;
 
 class AuthController extends Controller
 {
@@ -14,10 +16,11 @@ class AuthController extends Controller
     {
         // dd(auth()->user());
 
-        if (auth()->user()) {
+        if (auth()->check()) {
 
             return back();
         }
+
         return inertia::render(
             'pages/auth/Login'
         );
@@ -26,14 +29,13 @@ class AuthController extends Controller
 
     public function login()
     {
-        sleep(3);
 
         // if logged in
 
-        if (auth()->user()) {
+        // if (auth()->user()->roles->first()->data === 'author') {
 
-            return redirect('/cars');
-        }
+        //     return redirect('/cars');
+        // }
 
         // if not logged in
         $user = Request()->validate(
@@ -47,33 +49,54 @@ class AuthController extends Controller
         // dd($name);
         if (auth()->attempt($user)) {
 
-            $name = auth()->user()->name;
+            $name = Auth::user()->name;
 
+            // dd(Auth::user()->activated);
 
+            if (!Auth::user()->activated) {
+                Auth::logout();
+                return back()->withErrors(['msg' => 'deactivated']);
+            }
 
             // return redirect()->route('storeUserData', [
             //     'user' => auth()->user()
             // ]);
 
-            return redirect('/cars')
-                ->with('alerts', [
-                    'success' => true,
-                    'msg' => "welcome $name "
-                ])
-                ->with('user', auth()->user());
+            // if admin user
+            if (Auth::user()->roles->first()->data === 'admin') {
+
+                return redirect('/admin/dashboard')
+                    ->with('alerts', [
+                        'success' => true,
+                        'msg' => "welcome $name "
+                    ])
+                    ->with('user', auth()->user());
+            }
+
+            if (Auth::user()->roles->first()->data === 'author') {
+
+                return redirect('/cars')
+                    ->with('alerts', [
+                        'success' => true,
+                        'msg' => "welcome $name "
+                    ])
+                    ->with('user', auth()->user());
+            }
+            Auth::logout();
         }
 
-        return back()->withErrors(['email' => 'invalid Credentials']);
+        return back()->withErrors(['msg' => 'invalid Credentials']);
 
         //
     }
     protected function logout()
     {
         //
-        sleep(3);
+        if (auth()->check()) {
 
-        auth()->logout();
-
-        return redirect('/auth/login');
+            Auth::logout();
+            return redirect('auth/login');
+        }
+        return back();
     }
 }

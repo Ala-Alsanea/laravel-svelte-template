@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('role_id')->constrained('roles');
 
-            $table->boolean('active')->default(0);
+            $table->boolean('active')->default(1);
 
             $table->timestamps();
         });

@@ -38,7 +38,7 @@
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 
 <header
-    class="bg-primary h-20 items-center relative z-10 border-b-base-content"
+    class="bg-primary-focus h-20 items-center relative z-10 border-b-base-content"
 >
     <div
         class="flex flex-center flex-col h-full  justify-center mx-auto px-3 relative "
@@ -117,12 +117,7 @@
                             <button
                                 class="capitalize"
                                 use:inertia={{
-                                    href:
-                                        AvatarLink.title == "Profile" &&
-                                        props.auth.user
-                                            ? AvatarLink.link +
-                                              props.auth.user.id
-                                            : AvatarLink.link,
+                                    href: AvatarLink.link,
                                 }}
                             >
                                 {AvatarLink.title}

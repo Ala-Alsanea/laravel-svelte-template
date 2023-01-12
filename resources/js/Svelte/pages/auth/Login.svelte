@@ -1,6 +1,7 @@
 <script>
     import { Inertia } from "@inertiajs/inertia";
     import { inertia, useForm } from "@inertiajs/inertia-svelte";
+    import AvatarLinksStore from "../admin/layout/AvatarLinksStore";
 
     //
     useForm;
@@ -23,12 +24,12 @@
 
 <!-- svelte-ignore a11y-label-has-associated-control -->
 
-<main>
+<main
+    class="bg-gray-50 flex flex-col   justify-center items-center gap-10  h-screen "
+>
     <!--  -->
-    <h1 class="text-5xl font-bold text-center my-20 capitalize">login</h1>
-    <div
-        class="border border-primary rounded-md items-center w-max m-auto bg-gray-50"
-    >
+    <h1 class="text-5xl font-bold  capitalize">login</h1>
+    <div class="border border-primary rounded-md  w-max  bg-white">
         <form
             action="/auth/login"
             method="post"
@@ -44,13 +45,13 @@
                     type="text"
                     placeholder="Type here"
                     name="email"
-                    class="input w-full  input-primary"
+                    class="input w-full input-primary shadow-lg shadow-success"
                     bind:value={$loginInfo.email}
                 />
             </div>
 
             <!-- password -->
-            <div class=" w-full max-w-xs">
+            <div class=" w-full max-w-xs ">
                 <label class="label">
                     <span class="label-text capitalize">password </span>
                 </label>
@@ -58,22 +59,22 @@
                     type="password"
                     placeholder="Type here"
                     name="password"
-                    class="input w-full  input-primary"
+                    class="input w-full  input-primary shadow-lg shadow-success"
                     bind:value={$loginInfo.password}
                 />
             </div>
 
             <!-- errors -->
             {#if errorList.length != 0}
-                <div class="alert-error p-3">
+                <div class="alert-error p-3 rounded-lg">
                     {#each errorList as error}
-                        <p>{error}</p>
+                        <p>&blacktriangleright; {error}</p>
                     {/each}
                 </div>
             {/if}
 
             <button
-                class=" btn btn-primary"
+                class=" btn btn-primary shadow-2xl shadow-current "
                 class:loading={$loginInfo.processing}
             >
                 login

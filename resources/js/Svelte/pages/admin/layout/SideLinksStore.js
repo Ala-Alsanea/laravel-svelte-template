@@ -7,32 +7,32 @@ import RecycleBinIcon from "./icons/RecycleBin.svelte";
 import DocumentationIcon from "./icons/DocumentationIcon.svelte";
 import { writable } from "svelte/store";
 
-let SideLinksStore = writable([{
+const SideLinksStore = writable([
+    {
         section: "general",
-        content: [{
-                title: "cars",
-                icon: MediasIcon,
-                link: "/cars",
-                component: "pages/CRUD/View",
-            },
-
+        content: [
             {
-                title: "test",
-                icon: MediasIcon,
-                link: "/test",
-                component: "",
+                title: "dashboard",
+                icon: HomeIcon,
+                link: "/admin/dashboard",
+                component: "pages/admin/View",
             },
         ],
     },
     {
         section: "tab 2",
-        content: [{
-                title: "view",
+        content: [
+            {
+                title: "users",
                 icon: MediasIcon,
-                link: "/view",
-                component: "pages/CRUD/View",
+                link: "/admin/user",
+                component: "pages/admin/user/Index",
             },
-
+        ],
+    },
+    {
+        section: "tab 3",
+        content: [
             {
                 title: "not found 404",
                 icon: MediasIcon,

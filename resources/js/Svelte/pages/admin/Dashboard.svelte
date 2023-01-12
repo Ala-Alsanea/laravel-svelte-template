@@ -16,11 +16,11 @@
 </script>
 
 <main>
-    <Table {alerts} resources={cars} {colNames} tableName="cars" />
+    <!-- <Table {alerts} resources={cars} {colNames} tableName="cars" /> -->
 </main>
 
 <svelte:head>
-    <title>View</title>
+    <title>dashboard</title>
 </svelte:head>
 
 <style>

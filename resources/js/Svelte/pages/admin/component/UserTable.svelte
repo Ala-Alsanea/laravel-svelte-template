@@ -18,10 +18,6 @@
     let CreateBtnClk = false;
 
     $: {
-        // dataList = Object.keys(resources.data[0]);
-        // dataList = dataList.filter((value) => {
-        //     return "_id" != value.slice(-3);
-        // });
         if (is_empty(resources.data)) {
             Inertia.get(
                 resources.last_page_url + "&per_page=" + resources.per_page
@@ -29,20 +25,9 @@
         }
     }
 
-    export let handleDelete = (id) => {
-        console.log("/cars/" + id);
-        Inertia.delete("/cars/" + id);
-    };
-
-    export let handleUpdate = (id) => {
-        console.log("/cars/" + id + "/edit");
-        Inertia.get("/cars/" + id + "/edit");
-    };
-
-    export let handleCerate = () => {
-        CreateBtnClk = !CreateBtnClk;
-        console.log("/cars/create");
-        Inertia.get("/cars/create");
+    let handleActivation = (id, state) => {
+        // Inertia.get("/cars/" + id + "/edit");
+        Inertia.post(`/admin/user/${id}/activate`, { state });
     };
 </script>
 
@@ -55,19 +40,14 @@
                 {tableName}
             </h1>
 
-            <!-- {#if can.create} -->
-            <label
+            <button
                 for="cerate"
-                use:inertia
+                use:inertia={{ href: "/admin/user/register" }}
                 class="btn btn-primary text-white text-lg py-0 md:btn-wide "
                 class:loading={CreateBtnClk}
-                on:click={() => {
-                    handleCerate();
-                }}
             >
-                add +
-            </label>
-            <!-- {/if} -->
+                register user
+            </button>
         </div>
         {#if resources.total > 0}
             <Alert {alerts} />
@@ -99,40 +79,31 @@
                         <!-- row 1 -->
                         <tr class="hover">
                             <th>{i + 1}</th>
-                            <td>{data.id}</td>
-                            <td>{data.model}</td>
-                            <td>{data.brand.data}</td>
-                            <td>{data.color.data}</td>
+                            <td>{data.name}</td>
+                            <td>{data.email}</td>
+                            <td>{data.roles[0].data}</td>
                             <!-- BTNs -->
                             <td>
-                                <label
-                                    for="update"
-                                    use:inertia
-                                    class="btn btn-info py-0"
-                                    on:click={() => {
-                                        handleUpdate(data.id);
-                                    }}
-                                >
-                                    Update
-                                </label>
-
-                                <!-- {#if $page.props.can.delete} -->
-                                <label
-                                    for="delete-{data.id}"
-                                    class="btn btn-error py-0"
-                                >
-                                    Delete
-                                </label>
-                                <!-- {/if} -->
+                                {#if data.id !== $page.props.auth.user.id}
+                                    <label
+                                        for="update"
+                                        class="btn  py-0"
+                                        class:btn-info={data.activated}
+                                        class:btn-error={!data.activated}
+                                        on:click={() => {
+                                            handleActivation(
+                                                data.id,
+                                                data.activated
+                                            );
+                                        }}
+                                    >
+                                        {data.activated
+                                            ? "activated"
+                                            : "deactivated"}
+                                    </label>
+                                {/if}
                             </td>
                         </tr>
-                        <DeleteModal
-                            detailsText="the {data.model} will be preeminently deleted"
-                            id="delete-{data.id}"
-                            callback={() => {
-                                handleDelete(data.id);
-                            }}
-                        />
                     {/each}
                 </tbody>
                 <tfoot>

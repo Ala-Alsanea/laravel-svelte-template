@@ -18,45 +18,23 @@ use App\Http\Controllers\resource\CarController;
 |
 */
 
+
 Route::get('/', function () {
+    // dd(__DIR__);
     return Inertia::render('pages/landing_page_v1/Index');
 });
 
 
-
-// auth
-Route::get('/auth/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/auth/login', [AuthController::class, 'login']);
-Route::get('/auth/logout', [AuthController::class, 'logout']);
+require __DIR__ . '/web/auth.php';
+require __DIR__ . '/web/admin.php';
+require __DIR__ . '/web/crud.php';
 
 
 
 
-// crud
-//
-Route::group(
-    [
-        'middleware' => 'auth',
-        'prefix' => ''
-    ],
-    function () {
-
-        // auth
-        Route::get('/user/{id}', [UserController::class, 'profile']);
 
 
-        // view all
-        Route::get('/cars', [CarController::class, 'index']);
-        // create
-        Route::get('/cars/create', [CarController::class, 'create']);
-        Route::post('/cars', [CarController::class, 'store']);
-        // update
-        Route::get('/cars/{id}/edit', [CarController::class, 'edit']);
-        Route::put('/cars/{id}', [CarController::class, 'update']);
-        // delete
-        Route::delete('/cars/{id}', [CarController::class, 'destroy']);
-    }
-);
+
 
 
 

@@ -14,11 +14,13 @@
     };
 </script>
 
-<ul class="md:pl-2 md:pr-3 ">
+<ul class="md:pl-2 md:pr-3 md:ml-2 ">
     <li>
         {#each SideLinks as section, i (section.section)}
             <div
-                class="mb-3 collapse collapse-arrow  bg-primary-focus mx-2 md:mx-0 rounded-lg"
+                class="mb-3 collapse collapse-arrow bg-primary mx-2 md:mx-0  rounded-xl"
+                class:collapse-open={section.section === "general"}
+                class:collapse-arrow={section.section !== "general"}
             >
                 <input type="checkbox" name="" id="" />
                 <label for={i} class={style.section}>
