@@ -46,7 +46,7 @@ class HandleInertiaRequests extends Middleware
                     'username' => Auth::user() ? Auth::user()->name : null,
                     'role' => Auth::user() ? Auth::user()->roles()->first()->data : null
                 ]
-            ]
+            ], 'copyrightData' => now()->year
 
 
         ]);

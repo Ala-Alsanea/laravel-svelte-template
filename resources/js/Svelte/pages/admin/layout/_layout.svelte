@@ -1,31 +1,24 @@
 <script>
-    import { onMount } from "svelte";
     import AvatarLinksStore from "./AvatarLinksStore";
     import SideLinksStore from "./SideLinksStore";
     import LayoutDashboard from "../../../shared/layout_dashboard/Layout.svelte";
-    import data from "./SideLinksStore";
     import { Inertia } from "@inertiajs/inertia";
     import { page, inertia } from "@inertiajs/inertia-svelte";
 
-    let SideLinks = data;
+    let SideLinks = [];
     let AvatarLinks = [];
 
     // console.log("page", $page);
 
-    if ($AvatarLinksStore.length < 2) {
-        AvatarLinksStore.update((current) => {
-            return [
-                {
-                    title: `Profile - (${$page.props.auth.user.username})`,
-                    link: `/user/${$page.props.auth.user.id}`,
-                },
-                ...current,
-            ];
-        });
-    }
-
     AvatarLinksStore.subscribe((data) => {
         AvatarLinks = data;
+        AvatarLinks = [
+            {
+                title: `Profile - (${$page.props.auth.user.username})`,
+                link: `/user/${$page.props.auth.user.id}`,
+            },
+            ...AvatarLinks,
+        ];
     });
 
     SideLinksStore.subscribe((data) => {

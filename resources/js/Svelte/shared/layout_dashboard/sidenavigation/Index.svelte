@@ -3,6 +3,7 @@
     import SidenavItems from "./Items.svelte";
     import SidenavHeader from "./Header.svelte";
     import { clickOutside } from "../provider/click-outside";
+    import { page } from "@inertiajs/inertia-svelte";
 
     export let SideLinks;
     export let mobilePosition = "right";
@@ -15,7 +16,7 @@
         close: `hidden`,
         container: `pb-32 lg:pb-6 bg-primary-focus flex flex-col gap-10`,
         open: `w-8/12 absolute z-40 sm:w-5/12`,
-        default: `bg-primary-focus   h-screen overflow-y-auto top-0 lg:block lg:relative lg:w-64 lg:z-auto`,
+        default: `bg-primary-focus  h-screen overflow-y-auto top-0 lg:block lg:relative lg:w-64 lg:z-auto`,
     };
 
     const closeSidenav = () => {
@@ -30,14 +31,23 @@
     use:clickOutside
     on:click_outside={closeSidenav}
     class={`${style.default} ${style.mobilePosition[mobilePosition]}
-       ${$open ? style.open : style.close} scrollbar`}
+       ${$open ? style.open : style.close} scrollbar `}
 >
-    <div class={style.container}>
-        <!-- <div class="border-r-2 border-r-base-content   "> -->
-        <SidenavHeader />
-        <SidenavItems {SideLinks} />
-        <!-- </div> -->
-    </div>
+    <section class="flex flex-col justify-between h-full ">
+        <div class={style.container}>
+            <!-- <div class="border-r-2 border-r-base-content   "> -->
+            <SidenavHeader />
+            <SidenavItems {SideLinks} />
+            <!-- </div> -->
+        </div>
+
+        <div
+            class="text-white text-sm text-center bg-primary m-2 mx-5 py-1
+             rounded-full"
+        >
+            copyrights &copy; {$page.props.copyrightData}
+        </div>
+    </section>
 </aside>
 
 <style>

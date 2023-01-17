@@ -70,5 +70,6 @@ npm run build
 - [x] change the res and routes
 - [x] split users UIs
 - [x] create user
-- [ ] fix avatar store 
-- [ ] fix profile auth 
+- [x] fix avatar store 
+- [x] fix profile auth 
+****

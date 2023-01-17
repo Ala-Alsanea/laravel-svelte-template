@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use Hash;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
@@ -23,7 +24,10 @@ class UserController extends Controller
 
         Gate::authorize('is_activated', Auth::user());
         $user = User::findOrFail($id);
-        Gate::authorize('is_same_user', [Auth::user(), $user]);
+        // Gate::authorize('is_same_user', [Auth::user(), $user]);
+        if (Auth::user()->id != $user->id) {
+            abort(403);
+        }
 
         dd($user);
     }

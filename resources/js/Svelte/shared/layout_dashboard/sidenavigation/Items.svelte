@@ -39,10 +39,12 @@
                                         : ""
                                 }`}
                             >
-                                <span
-                                    ><svelte:component this={item.icon} /></span
-                                >
-                                <span class={style.title}>{item.title}</span>
+                                <span>
+                                    <svelte:component this={item.icon} />
+                                </span>
+                                <span class={style.title}>
+                                    {item.title}
+                                </span>
                             </button>
                         {/each}
                     </div>

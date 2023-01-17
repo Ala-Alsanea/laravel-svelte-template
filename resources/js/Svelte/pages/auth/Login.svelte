@@ -3,6 +3,7 @@
     import { inertia, useForm } from "@inertiajs/inertia-svelte";
     import AvatarLinksStore from "../admin/layout/AvatarLinksStore";
 
+    import imgBg from "../../img/Showtime.png";
     //
     useForm;
     let loginInfo = useForm({ email: "test@example.com", password: "123" });
@@ -25,11 +26,12 @@
 <!-- svelte-ignore a11y-label-has-associated-control -->
 
 <main
-    class="bg-gray-50 flex flex-col   justify-center items-center gap-10  h-screen "
+    class="bg-gradient-to-bl from-blue-500 to-blue-900 flex flex-col   justify-center items-center gap-10  h-screen "
 >
+    <!-- <svelte:component this={imgBg} /> -->
     <!--  -->
-    <h1 class="text-5xl font-bold  capitalize">login</h1>
-    <div class="border border-primary rounded-md  w-max  bg-white">
+    <h1 class="text-5xl font-bold text-white capitalize">login</h1>
+    <div class="border border-primary rounded-3xl  w-max  bg-white">
         <form
             action="/auth/login"
             method="post"

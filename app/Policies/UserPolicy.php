@@ -33,6 +33,6 @@ class UserPolicy
 
     public function is_same_user(User $user, User $model)
     {
-        return $user->id != $model->id;
+        return $user->id == $model->id;
     }
 }
