@@ -8,7 +8,7 @@
   - svelte
   - laravel
 
-## img
+## Preview
 
 - ### login
   - ![alt](/_imgReadme/2.png)
@@ -19,8 +19,8 @@
 
 ## Feature [ ToDo ]
   - [x] CRUD
-    - [ ] select click box in view
-    - [ ] sort in table
+    - [ ] select click box in table
+    - [ ] sort in 
     - [x] delete modal
     - [x] update form
     - [x] form server side validation
@@ -28,13 +28,14 @@
     - [ ] detail page
     - [ ] file upload 
     - [ ] search
-  - [ ] admin panel enhancement
-    - [ ] order top nav
+  - [x] admin panel enhancement
+    - [x] order top nav
     - [x] order side nav
   - [X] user auth (login )
-    - [ ] register [ for admin only ]
-  - [ ] user roles
-  - [ ] user profile 
+    - [ ] reset users password
+    - [x] register [ for admin only ]
+  - [x] user roles
+  - [x] user profile 
   - [ ] landing page
   - [ ] notification system
   
@@ -71,7 +72,7 @@ npm run dev
 # build svelte and Inertia app
 npm run build 
 ```
-## issues
+## bugs
 - [x] store user info and not to bring it with every request 
   -  bring user name only or access from $page var in svelte
 - [x] change the res and routes
@@ -79,4 +80,4 @@ npm run build
 - [x] create user
 - [x] fix avatar store 
 - [x] fix profile auth 
-****
+
