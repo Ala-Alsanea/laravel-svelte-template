@@ -27,7 +27,7 @@ class CarFactory extends Factory
             // 'color' => fake()->colorName(),
             'color_id' => Color::find(rand(1, 10))->id,
             'brand_id' => Brand::find(rand(1, 10))->id,
-            'year' => fake()->year(),
+            'year' => fake()->date(),
 
 
             //

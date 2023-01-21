@@ -8,24 +8,37 @@
   - svelte
   - laravel
 
+## Preview
 
+- ### login
+  - ![alt](/_imgReadme/2.png)
+- ### admin
+  - ![alt](/_imgReadme/3.png)
+- ### author
+  - ![alt](/_imgReadme/1.png)
 
 ## Feature [ ToDo ]
-  - [ ] CRUD
-    - [ ] select click box in view
-    - [ ] sort in view
+  - [x] CRUD
+    - [ ] select click box in table
+    - [ ] sort in 
     - [x] delete modal
-    - [ ] update form
+    - [x] update form
     - [x] form server side validation
-    - [ ] paginate
+    - [x] paginate
+    - [ ] detail page
     - [ ] file upload 
-  - [ ] admin panel
-    - [ ] order top nav
-    - [ ] order side nav
-  - [ ] user rules
-  - [ ] user profile
-  - [ ] user auth (login and register [ for admin only ] )
+    - [ ] search
+  - [x] admin panel enhancement
+    - [x] order top nav
+    - [x] order side nav
+  - [X] user auth (login )
+    - [ ] reset users password
+    - [x] register [ for admin only ]
+  - [x] user roles
+  - [x] user profile 
+  - [ ] landing page
   - [ ] notification system
+  
 
 
 ## Installation
@@ -59,3 +72,12 @@ npm run dev
 # build svelte and Inertia app
 npm run build 
 ```
+## bugs
+- [x] store user info and not to bring it with every request 
+  -  bring user name only or access from $page var in svelte
+- [x] change the res and routes
+- [x] split users UIs
+- [x] create user
+- [x] fix avatar store 
+- [x] fix profile auth 
+

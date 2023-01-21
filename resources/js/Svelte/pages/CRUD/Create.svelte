@@ -28,25 +28,24 @@
     let errorList = [];
 
     // fun
+    $: {
+        errorList = Object.values(errors);
+        console.log("errorList", errorList);
+    }
 
     function handelSubmit() {
         console.log("post", data);
-        Inertia.post("/create/store", data);
+        Inertia.post("/cars", data);
     }
 
     $: {
         data.brand = brandSelected;
         data.color = colorSelected;
     }
-    $: {
-        errorList = Object.values(errors);
-        console.log("errorList", errorList);
-    }
-    $: console.log("errors", errors);
-    $: console.log("data", data);
 </script>
 
 <main>
+    <h1 class="text-5xl font-bold mb-9 ml-8">create</h1>
     <div class="border border-primary rounded-md p-5 mx-10 ">
         <form
             action=""
@@ -68,7 +67,7 @@
                 />
             </div>
 
-            <!-- color & color -->
+            <!-- brand & color -->
             <div class=" flex gap-2 flex-wrap">
                 <!-- brand -->
                 <div class="form-control w-full max-w-xs">

@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\CarController;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\auth\UserController;
+use App\Http\Controllers\resource\CarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,14 +18,26 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/view');
-});
-Route::get('/view', [CarController::class, 'view']);
 
-Route::get('/create', [CarController::class, 'create']);
-Route::post('/create/store', [CarController::class, 'store']);
-Route::delete('/delete/{id}', [CarController::class, 'delete']);
+Route::get('/', function () {
+    // dd(__DIR__);
+    return Inertia::render('pages/landing_page_v1/Index');
+});
+
+
+require __DIR__ . '/web/auth.php';
+require __DIR__ . '/web/admin.php';
+require __DIR__ . '/web/crud.php';
+
+
+
+
+
+
+
+
+
+
 
 // test
 Route::get('/test', [CarController::class, 'test']);
