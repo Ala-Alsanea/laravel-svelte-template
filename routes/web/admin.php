@@ -8,6 +8,11 @@ use App\Http\Controllers\auth\UserController;
 use App\Http\Controllers\resource\CarController;
 
 
+
+Route::get('/admin', function () {
+    return  redirect('/admin/dashboard');
+});
+
 Route::group(
   [
     'middleware' => 'auth',

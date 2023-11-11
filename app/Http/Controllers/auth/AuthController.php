@@ -18,7 +18,7 @@ class AuthController extends Controller
 
         if (auth()->check()) {
 
-            return back();
+            return redirect('/admin');
         }
 
         return inertia::render(

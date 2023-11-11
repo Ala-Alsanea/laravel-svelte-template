@@ -10,6 +10,12 @@ use App\Http\Controllers\resource\CarController;
 
 // auth
 Route::get('/auth/login', [AuthController::class, 'showLogin'])->name('login');
+
+Route::get('/login',function(){
+    return  redirect('/auth/login');
+});
+
+
 Route::post('/auth/login', [AuthController::class, 'login']);
 Route::get('/auth/logout', [AuthController::class, 'logout']);
 
